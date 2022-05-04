@@ -7,6 +7,7 @@ namespace SchoolLibrary.Persister
 {
     public class PersonPersister
     {
+
         public bool AddPerson(Person person)
         {
             var sql = @"
