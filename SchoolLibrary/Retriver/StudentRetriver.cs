@@ -10,13 +10,10 @@ namespace SchoolLibrary.Retriver
         public IEnumerable<Student> GetStudentrById(int IdStudent)
         {
 
-            var sql = @"
-                    SELECT [Id]
-                          ,[IdPerson]
-                          ,[Matricola]
-                          ,[DataIscrizione]
-                      FROM [dbo].[Student]
-                        where Id =@IdStudent";
+            var sql = @"select p.id,p.Name, p.Surname, p.BirthDay,p.Address,p.Gender,s.Matricola,s.DataIscrizione
+                        from Student s
+                        join person p on p.Id = s.IdPerson
+                        where p.Id = @IdStudent";
 
 
             using var connection = new SQLConnectionFactory().GetSQLConnection();
