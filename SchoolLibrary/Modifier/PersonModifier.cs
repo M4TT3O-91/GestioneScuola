@@ -25,7 +25,7 @@ namespace SchoolLibrary.Modifier
                           ,[Surname] = @Surname
                           ,[BirthDay] = @BirthDay
                           ,[Gender] = @Gender
-                     WHERE @Id=Id";
+                     WHERE Id=@Id";
 
             using var connection = new SqlConnection(EnvConstants.CONNECTION_STRING);
             connection.Open();

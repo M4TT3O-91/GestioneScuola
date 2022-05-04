@@ -8,7 +8,7 @@ namespace SchoolLibrary.Persister
     public class PersonPersister
     {
 
-        public bool AddPerson(Person person)
+        public int AddPerson(Person person)
         {
             var sql = @"
                         INSERT INTO [dbo].[Person]
@@ -22,7 +22,7 @@ namespace SchoolLibrary.Persister
                                     @Surname,
                                     @BirthDay,
                                     @Gender,
-                                    @Address)";
+                                    @Address);SELECT @@IDENTITY AS 'Identity'; ";
 
             using var connection = new SQLConnectionFactory().GetSQLConnection();
             connection.Open();
@@ -31,10 +31,10 @@ namespace SchoolLibrary.Persister
             command.Parameters.AddWithValue("@SurName", person.Surname);
             command.Parameters.AddWithValue("@BirthDay", person.BirthDay);
             command.Parameters.AddWithValue("@Gender", person.Gender);
-            command.Parameters.AddWithValue("@Adress", person.Address);
-            
+            command.Parameters.AddWithValue("@Address", person.Address);
 
-            return command.ExecuteNonQuery() > 0;
+
+            return Convert.ToInt32(command.ExecuteScalar());
         }
     }
 }
