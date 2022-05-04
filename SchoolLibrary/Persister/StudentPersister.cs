@@ -23,7 +23,7 @@ namespace SchoolLibrary.Persister
             using var command = new SqlCommand(sql, connection);
             command.Parameters.AddWithValue("@IdPerson", student.Id);
             command.Parameters.AddWithValue("@Matricola", student.Matricola);
-            command.Parameters.AddWithValue("@DataAssunzione", student.DataIscrizione);
+            command.Parameters.AddWithValue("@DataIscrizione", student.DataIscrizione);
 
             return command.ExecuteNonQuery() > 0;
         }
