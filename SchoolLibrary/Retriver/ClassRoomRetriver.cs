@@ -17,7 +17,6 @@ namespace SchoolLibrary.Retriver
                       FROM [dbo].[Class]
                         where Id =@IdClass";
 
-
             using var connection = new SQLConnectionFactory().GetSQLConnection();
             connection.Open();
             using var command = new SqlCommand(sql, connection);
