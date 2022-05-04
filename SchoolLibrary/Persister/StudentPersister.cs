@@ -18,7 +18,7 @@ namespace SchoolLibrary.Persister
                                    ,@Matricola
                                    ,@DataIscrizione)";
 
-            using var connection = new SqlConnection(EnvConstants.CONNECTION_STRING);
+            using var connection = new Interface.SQLConnectionFactory().GetSQLConnection();
             connection.Open();
             using var command = new SqlCommand(sql, connection);
             command.Parameters.AddWithValue("@IdPerson", student.Id);

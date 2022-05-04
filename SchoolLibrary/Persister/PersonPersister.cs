@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using SchoolLibrary.Costants;
+using SchoolLibrary.Interface;
 using SchoolLibrary.Model;
 
 namespace SchoolLibrary.Persister
@@ -22,7 +23,7 @@ namespace SchoolLibrary.Persister
                                     @Gender,
                                     @Address)";
 
-            using var connection = new SqlConnection(EnvConstants.CONNECTION_STRING);
+            using var connection = new SQLConnectionFactory().GetSQLConnection();
             connection.Open();
             using var command = new SqlCommand(sql, connection);
             command.Parameters.AddWithValue("@Name", person.Name);

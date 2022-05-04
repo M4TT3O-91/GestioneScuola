@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using SchoolLibrary.Costants;
+using SchoolLibrary.Interface;
 using SchoolLibrary.Model;
 
 namespace SchoolLibrary.Modifier
@@ -10,7 +11,7 @@ namespace SchoolLibrary.Modifier
         {
             var sql = @"DELETE FROM [dbo].[Class]
                         WHERE Id=@Id ";
-            using var connection = new SqlConnection(EnvConstants.CONNECTION_STRING);
+            using var connection = new SQLConnectionFactory().GetSQLConnection();
             connection.Open();
             using var command = new SqlCommand(sql, connection);
             command.Parameters.AddWithValue("@Id", id);
@@ -24,7 +25,7 @@ namespace SchoolLibrary.Modifier
                           ,[IdLesson] = @IdLesson
                      WHERE @Id=Id";
 
-            using var connection = new SqlConnection(EnvConstants.CONNECTION_STRING);
+            using var connection = new SQLConnectionFactory().GetSQLConnection();
             connection.Open();
             using var command = new SqlCommand(sql, connection);
             command.Parameters.AddWithValue("@IdStudent", classRoom.IdStudent);
