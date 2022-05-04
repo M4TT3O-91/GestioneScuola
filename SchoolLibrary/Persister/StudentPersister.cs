@@ -6,7 +6,7 @@ namespace SchoolLibrary.Persister
 {
     public class StudentPersister
     {
-        public bool AddStudent(Student student)
+        public int AddStudent(Student student)
         {
             var sql = @"
                         INSERT INTO [dbo].[Student]
@@ -16,7 +16,7 @@ namespace SchoolLibrary.Persister
                              VALUES
                                    (@IdPerson
                                    ,@Matricola
-                                   ,@DataIscrizione)";
+                                   ,@DataIscrizione);SELECT @@IDENTITY AS 'Identity';"; 
 
             using var connection = new Interface.SQLConnectionFactory().GetSQLConnection();
             connection.Open();
@@ -25,7 +25,7 @@ namespace SchoolLibrary.Persister
             command.Parameters.AddWithValue("@Matricola", student.Matricola);
             command.Parameters.AddWithValue("@DataIscrizione", student.DataIscrizione);
 
-            return command.ExecuteNonQuery() > 0;
+            return Convert.ToInt32(command.ExecuteScalar());
         }
     }
 }

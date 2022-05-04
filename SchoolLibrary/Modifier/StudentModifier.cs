@@ -22,13 +22,15 @@ namespace SchoolLibrary.Modifier
                        SET [IdPerson] = @IdPerson,
                            [Matricola] = @Matricola,
                            [DataIscrizione] = @DataIscrizione
-                     WHERE @Id=Id";
+                     WHERE IdStudent=@Id";
 
             using var connection = new SQLConnectionFactory().GetSQLConnection();
             connection.Open();
             using var command = new SqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@IdPerson", student.Id);
             command.Parameters.AddWithValue("@Matricola", student.Matricola);
             command.Parameters.AddWithValue("@DataIscrizione", student.DataIscrizione);
+            command.Parameters.AddWithValue("@Id", student.IdStudent);
             
             var persModifier = new PersonModifier();
             

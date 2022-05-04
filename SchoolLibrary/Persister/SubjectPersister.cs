@@ -7,7 +7,7 @@ namespace SchoolLibrary.Persister
 {
     public class SubjectPersister
     {
-        public bool AddSubject(Subject subject)
+        public int AddSubject(Subject subject)
         {
             var sql = @"
                         INSERT INTO [dbo].[Subject]
@@ -19,7 +19,7 @@ namespace SchoolLibrary.Persister
                                    (@Name
                                    ,@Description
                                    ,@Credits
-                                   ,@Hours)";
+                                   ,@Hours);SELECT @@IDENTITY AS 'Identity';";
 
             using var connection = new SQLConnectionFactory().GetSQLConnection();
             connection.Open();
@@ -29,7 +29,7 @@ namespace SchoolLibrary.Persister
             command.Parameters.AddWithValue("@Credits", subject.Credits);
             command.Parameters.AddWithValue("@Hours", subject.Hours);
 
-            return command.ExecuteNonQuery() > 0;
+            return Convert.ToInt32(command.ExecuteNonQuery());
         }
     }
 }

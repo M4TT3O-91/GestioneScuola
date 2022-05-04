@@ -9,7 +9,7 @@ namespace SchoolLibrary.Persister
 {
     public class LessonPersister
     {
-        public bool AddLesson(Lesson lesson)
+        public int AddLesson(Lesson lesson)
         {
             var sql = @"
                         INSERT INTO [dbo].[Lesson]
@@ -17,7 +17,7 @@ namespace SchoolLibrary.Persister
                                    ,[IdSubject])
                              VALUES
                                    (@IdTeacher
-                                   ,@IdSubject)";
+                                   ,@IdSubject);SELECT @@IDENTITY AS 'Identity';";
 
             using var connection = new SQLConnectionFactory().GetSQLConnection();
             connection.Open();
@@ -25,7 +25,7 @@ namespace SchoolLibrary.Persister
             command.Parameters.AddWithValue("@IdTeacher", lesson.IdTeacher);
             command.Parameters.AddWithValue("@Matricola", lesson.IdSubject);
 
-            return command.ExecuteNonQuery() > 0;
+            return Convert.ToInt32(command.ExecuteScalar());
         }
     }
 }

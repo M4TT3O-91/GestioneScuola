@@ -7,7 +7,7 @@ namespace SchoolLibrary.Persister
 {
     public class ExamPersister
     {
-        public bool AddExam(Exam exam)
+        public int AddExam(Exam exam)
         {
             var sql = @"
                         INSERT INTO [dbo].[Exam]
@@ -17,7 +17,7 @@ namespace SchoolLibrary.Persister
                              VALUES
                                    (@IdStudent,
                                     @Date,
-                                    @IdSubject)";
+                                    @IdSubject);SELECT @@IDENTITY AS 'Identity';";
 
             using var connection = new SQLConnectionFactory().GetSQLConnection();
             connection.Open();
@@ -26,7 +26,7 @@ namespace SchoolLibrary.Persister
             command.Parameters.AddWithValue("@Date", exam.Date);
             command.Parameters.AddWithValue("@IdSubject", exam.IdSubject);
 
-            return command.ExecuteNonQuery() > 0;
+            return Convert.ToInt32(command.ExecuteScalar());
         }
     }
 }
