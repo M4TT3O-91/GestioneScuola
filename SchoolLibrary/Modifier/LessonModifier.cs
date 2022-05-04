@@ -4,11 +4,11 @@ using SchoolLibrary.Model;
 
 namespace SchoolLibrary.Modifier
 {
-    public class ClassRoomModifier
+    public class LessonModifier
     {
-        public bool DeleteClassRoomById(int id)
+        public bool DeleteLessonById(int id)
         {
-            var sql = @"DELETE FROM [dbo].[Class]
+            var sql = @"DELETE FROM [dbo].[Lesson]
                         WHERE Id=@Id ";
             using var connection = new SQLConnectionFactory().GetSQLConnection();
             connection.Open();
@@ -17,19 +17,18 @@ namespace SchoolLibrary.Modifier
             return command.ExecuteNonQuery() > 0;
         }
 
-        public bool UpdateClass(ClassRoom classRoom)
+        public bool UpdateClass(Lesson lesson)
         {
-            var sql = @"UPDATE [dbo].[Class]
-                       SET [IdStudent] = @IdStudent
-                          ,[IdLesson] = @IdLesson
+            var sql = @"UPDATE [dbo].[Lesson]
+                       SET [IdTeacher] = @IdTeacher
+                          ,[IdSubject] = @IdSubject
                      WHERE @Id=Id";
 
             using var connection = new SQLConnectionFactory().GetSQLConnection();
             connection.Open();
             using var command = new SqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@IdStudent", classRoom.IdStudent);
-            command.Parameters.AddWithValue("@IdLesson", classRoom.IdLesson);
-            command.Parameters.AddWithValue("@Id", classRoom.IdClass);
+            command.Parameters.AddWithValue("@IdStudent", lesson.IdTeacher);
+            command.Parameters.AddWithValue("@IdSubject", lesson.IdSubject);
             return command.ExecuteNonQuery() > 0;
         }
     }

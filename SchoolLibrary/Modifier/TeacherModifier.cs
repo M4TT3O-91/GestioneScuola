@@ -4,11 +4,11 @@ using SchoolLibrary.Model;
 
 namespace SchoolLibrary.Modifier
 {
-    public class ClassRoomModifier
+    public class TeacherModifier
     {
-        public bool DeleteClassRoomById(int id)
+        public bool DeleteTeacherById(int id)
         {
-            var sql = @"DELETE FROM [dbo].[Class]
+            var sql = @"DELETE FROM [dbo].[Teacher]
                         WHERE Id=@Id ";
             using var connection = new SQLConnectionFactory().GetSQLConnection();
             connection.Open();
@@ -17,20 +17,23 @@ namespace SchoolLibrary.Modifier
             return command.ExecuteNonQuery() > 0;
         }
 
-        public bool UpdateClass(ClassRoom classRoom)
+        public bool UpdateTeacher(Teacher teacher)
         {
-            var sql = @"UPDATE [dbo].[Class]
-                       SET [IdStudent] = @IdStudent
-                          ,[IdLesson] = @IdLesson
+            var sql = @"UPDATE [dbo].[Teacher]
+                       SET [IdPerson] = @IdPerson,
+                           [Matricola] = @Matricola,
+                           [DataAssunzione] = @DataAssunzione
                      WHERE @Id=Id";
 
             using var connection = new SQLConnectionFactory().GetSQLConnection();
             connection.Open();
             using var command = new SqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@IdStudent", classRoom.IdStudent);
-            command.Parameters.AddWithValue("@IdLesson", classRoom.IdLesson);
-            command.Parameters.AddWithValue("@Id", classRoom.IdClass);
-            return command.ExecuteNonQuery() > 0;
+            command.Parameters.AddWithValue("@Matricola", teacher.Matricola);
+            command.Parameters.AddWithValue("@DataAssunzione", teacher.DataAssunzione);
+
+            var persModifier = new PersonModifier();
+
+            return command.ExecuteNonQuery() > 0 && persModifier.UpdatePerson((Person)teacher);
         }
     }
 }

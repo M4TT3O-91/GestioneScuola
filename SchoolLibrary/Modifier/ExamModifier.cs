@@ -4,11 +4,11 @@ using SchoolLibrary.Model;
 
 namespace SchoolLibrary.Modifier
 {
-    public class ClassRoomModifier
+    public class ExamModifier
     {
-        public bool DeleteClassRoomById(int id)
+        public bool DeleteExamById(int id)
         {
-            var sql = @"DELETE FROM [dbo].[Class]
+            var sql = @"DELETE FROM [dbo].[Exam]
                         WHERE Id=@Id ";
             using var connection = new SQLConnectionFactory().GetSQLConnection();
             connection.Open();
@@ -16,20 +16,20 @@ namespace SchoolLibrary.Modifier
             command.Parameters.AddWithValue("@Id", id);
             return command.ExecuteNonQuery() > 0;
         }
-
-        public bool UpdateClass(ClassRoom classRoom)
+        public bool UpdateExam(Exam exam)
         {
-            var sql = @"UPDATE [dbo].[Class]
-                       SET [IdStudent] = @IdStudent
-                          ,[IdLesson] = @IdLesson
+            var sql = @"UPDATE [dbo].[Exam]
+                       SET [IdTeacher] = @IdTeacher,
+                           [Date] = @Date,
+                           [IdSubject] = @IdSubject,
                      WHERE @Id=Id";
 
             using var connection = new SQLConnectionFactory().GetSQLConnection();
             connection.Open();
             using var command = new SqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@IdStudent", classRoom.IdStudent);
-            command.Parameters.AddWithValue("@IdLesson", classRoom.IdLesson);
-            command.Parameters.AddWithValue("@Id", classRoom.IdClass);
+            command.Parameters.AddWithValue("@IdTeacher", exam.IdTeacher);
+            command.Parameters.AddWithValue("@Date", exam.Date);
+            command.Parameters.AddWithValue("@IdSubject", exam.IdSubject);
             return command.ExecuteNonQuery() > 0;
         }
     }

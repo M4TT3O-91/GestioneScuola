@@ -2,13 +2,14 @@
 using SchoolLibrary.Interface;
 using SchoolLibrary.Model;
 
+
 namespace SchoolLibrary.Modifier
 {
-    public class ClassRoomModifier
+    public class SubjectModifier
     {
-        public bool DeleteClassRoomById(int id)
+        public bool DeleteSubjectById(int id)
         {
-            var sql = @"DELETE FROM [dbo].[Class]
+            var sql = @"DELETE FROM [dbo].[Subject]
                         WHERE Id=@Id ";
             using var connection = new SQLConnectionFactory().GetSQLConnection();
             connection.Open();
@@ -17,19 +18,22 @@ namespace SchoolLibrary.Modifier
             return command.ExecuteNonQuery() > 0;
         }
 
-        public bool UpdateClass(ClassRoom classRoom)
+        public bool UpdateSubject(Subject subject)
         {
             var sql = @"UPDATE [dbo].[Class]
-                       SET [IdStudent] = @IdStudent
-                          ,[IdLesson] = @IdLesson
+                       SET [Name] = @Name,
+                           [Description] = @Description,
+                           [Credits] = @Credits,
+                           [Hours] = @Hours
                      WHERE @Id=Id";
 
             using var connection = new SQLConnectionFactory().GetSQLConnection();
             connection.Open();
             using var command = new SqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@IdStudent", classRoom.IdStudent);
-            command.Parameters.AddWithValue("@IdLesson", classRoom.IdLesson);
-            command.Parameters.AddWithValue("@Id", classRoom.IdClass);
+            command.Parameters.AddWithValue("@Name", subject.Name);
+            command.Parameters.AddWithValue("@Description", subject.Description);
+            command.Parameters.AddWithValue("@Credits", subject.Description);
+            command.Parameters.AddWithValue("@Hours", subject.Hours);
             return command.ExecuteNonQuery() > 0;
         }
     }

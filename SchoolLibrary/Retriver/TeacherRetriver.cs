@@ -10,11 +10,9 @@ namespace SchoolLibrary.Retriver
         {
 
             var sql = @"
-                    SELECT [Id]
-                          ,[IdPerson]
-                          ,[Matricola]
-                          ,[DataAssunzione]
-                      FROM [dbo].[Teacher]
+                        SELECT p.Id,p.Name, p.Surname, p.BirthDay,p.Address,p.Gender,t.IdTeacher,t.Matricola,t.DataAssunzione
+                        FROM Teacher t
+                        JOIN person p ON p.Id = t.IdPerson
                         where Id =@IdTeacher";
 
 
@@ -27,10 +25,16 @@ namespace SchoolLibrary.Retriver
             {
                 yield return new Teacher
                 {
-                    IdTeacher = Convert.ToInt32(reader["Id"]),
                     Id = Convert.ToInt32(reader["IdPerson"]),
+                    IdTeacher = Convert.ToInt32(reader["Id"]),
                     Matricola = reader["Matricola"].ToString(),
                     DataAssunzione = Convert.ToDateTime(reader["Birthday"]),
+
+                    Name = reader["Name"].ToString(),
+                    Surname = reader["Surname"].ToString(),
+                    BirthDay = Convert.ToDateTime(reader["BirthDay"].ToString()),
+                    Address = reader["Address"].ToString(),
+                    Gender = reader["Gender"].ToString(),
                 };
             }
 

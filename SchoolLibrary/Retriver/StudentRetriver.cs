@@ -1,5 +1,4 @@
 ﻿using Microsoft.Data.SqlClient;
-using SchoolLibrary.Costants;
 using SchoolLibrary.Interface;
 using SchoolLibrary.Model;
 
@@ -9,12 +8,10 @@ namespace SchoolLibrary.Retriver
     {
         public IEnumerable<Student> GetStudentrById(int IdStudent)
         {
-
-            var sql = @"select p.id,p.Name, p.Surname, p.BirthDay,p.Address,p.Gender,s.Matricola,s.DataIscrizione
-                        from Student s
-                        join person p on p.Id = s.IdPerson
-                        where p.Id = @IdStudent";
-
+            var sql = @"SELECT p.Id,p.Name, p.Surname, p.BirthDay,p.Address,p.Gender,s.IdStudente,s.Matricola,s.DataIscrizione
+                        FROM Student s
+                        JOIN person p ON p.Id = s.IdPerson
+                        WHERE p.Id = @IdStudent";
 
             using var connection = new SQLConnectionFactory().GetSQLConnection();
             connection.Open();
@@ -29,6 +26,12 @@ namespace SchoolLibrary.Retriver
                     Id = Convert.ToInt32(reader["IdPerson"]),
                     Matricola = reader["Matricola"].ToString(),
                     DataIscrizione = Convert.ToDateTime(reader["DataIscrizione"]),
+                    
+                    Name = reader["Name"].ToString(),
+                    Surname = reader["Surname"].ToString(),
+                    BirthDay = Convert.ToDateTime(reader["BirthDay"].ToString()),
+                    Address = reader["Address"].ToString(),
+                    Gender = reader["Gender"].ToString(),
                 };
             }
         }
