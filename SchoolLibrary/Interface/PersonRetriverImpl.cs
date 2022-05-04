@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using SchoolLibrary.Costants;
 using SchoolLibrary.Model;
+using SchoolLibrary.Interface;
 
 namespace SchoolLibrary.Interface
 {
@@ -19,7 +20,7 @@ namespace SchoolLibrary.Interface
                         where Id =@id";
 
 
-            using var connection = new SqlConnection(EnvConstants.CONNECTION_STRING);
+            using var connection = new SQLConnectionFactory().GetSQLConnection();
             connection.Open();
             using var command = new SqlCommand(sql, connection);
             command.Parameters.AddWithValue("@Id", id);
