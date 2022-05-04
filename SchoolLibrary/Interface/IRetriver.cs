@@ -2,6 +2,6 @@
 {
     public interface IRetriver<T>
     {
-        IEnumerable<T> GetAll(int id);
+        IEnumerable<T> GetByID(int id);
     }
 }

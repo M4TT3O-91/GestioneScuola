@@ -1,14 +1,12 @@
-﻿using Microsoft.Data.SqlClient;
-using SchoolLibrary.Costants;
+﻿
+
 using SchoolLibrary.Model;
-using SchoolLibrary.Interface;
 
 namespace SchoolLibrary.Interface
 {
-    public class PersonRetriverImpl : IRetriver<Person>
+    public class PersonRet
     {
-        public IEnumerable<Person> GetByID(int id)
-        {
+        public IEnumerable<Person> GetById(int id) {
             var sql = @"
                     SELECT [Id]
                           ,[Name]
@@ -18,11 +16,7 @@ namespace SchoolLibrary.Interface
                           ,[Address]
                       FROM [dbo].[Person]
                         where Id =@id";
-
-
-            using var connection = new SQLConnectionFactory().GetSQLConnection();
-            connection.Open();
-            using var command = new SqlCommand(sql, connection);
+            using var command = new SQLCommandFactory().GetSqlReader(sql);
             command.Parameters.AddWithValue("@Id", id);
             var reader = command.ExecuteReader();
             while (reader.Read())
@@ -38,6 +32,6 @@ namespace SchoolLibrary.Interface
                 };
 
             }
-        }
+        } 
     }
 }
