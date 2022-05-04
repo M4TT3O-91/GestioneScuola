@@ -13,7 +13,10 @@ namespace SchoolLibrary.Interface
         {
             using var connection = new SQLConnectionFactory().GetSQLConnection();
             connection.Open();
-            return new SqlCommand(Query, connection); ;
+            return new SqlCommand(Query, connection); 
         }
+
+
+
     }
 }
