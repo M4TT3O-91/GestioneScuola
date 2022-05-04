@@ -4,7 +4,7 @@ using SchoolLibrary.Model;
 
 namespace SchoolLibrary.Interface
 {
-    public class PersonRetriverImpl<Person> : IRetriver<Person>
+    public class PersonRetriverImpl : IRetriver<Person>
     {
         public IEnumerable<Person> GetAll(int id)
         {
@@ -34,7 +34,7 @@ namespace SchoolLibrary.Interface
                     Name = reader["Name"].ToString(),
                     Surname = reader["Surname"].ToString(),
                     Address = reader["Address"].ToString(),
-                }; ;
+                };
 
             }
         }
