@@ -6,7 +6,7 @@ namespace SchoolLibrary.Retriver
 {
     public class PersonRetriver
     {
-        public IEnumerable<Person> GetPerson(string name,string surname)
+        public IEnumerable<Person> GetPersonById(string name,string surname)
         {
 
             var sql = @"

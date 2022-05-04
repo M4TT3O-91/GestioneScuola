@@ -4,30 +4,30 @@ using SchoolLibrary.Model;
 
 namespace SchoolLibrary.Retriver
 {
-    public class ClassRoomRetriver
+    public class ExamDetailRetriver
     {
-        public IEnumerable<ClassRoom> GetClassRoomById(int IdClass)
+        public IEnumerable<ExamDetail> GetExamDetailById(int IdExamDetail)
         {
 
             var sql = @"
                     SELECT [Id]
+                          ,[IdExam]
                           ,[IdStudent]
-                          ,[IdLesson]
-                      FROM [dbo].[Class]
-                        where Id =@IdClass";
+                      FROM [dbo].[ExamDetail]
+                        where Id =@IdExamDetail";
 
 
             using var connection = new SqlConnection(EnvConstants.CONNECTION_STRING);
             connection.Open();
             using var command = new SqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@IdClass", IdClass);
+            command.Parameters.AddWithValue("@IdExamDetail", IdExamDetail);
             var reader = command.ExecuteReader();
             while (reader.Read())
             {
-                yield return new ClassRoom
+                yield return new ExamDetail
                 {
-                    IdClass = Convert.ToInt32(reader["Id"]),
-                    IdLesson = Convert.ToInt32(reader["IdLesson"]),
+                    IdExamDetails = Convert.ToInt32(reader["Id"]),
+                    IdExam = Convert.ToInt32(reader["IdExam"]),
                     IdStudent = Convert.ToInt32(reader["IdStudent"]),
                 };
             }
