@@ -2,28 +2,78 @@
 using SchoolLibrary.Persister;
 using SchoolLibrary.Modifier;
 using SchoolLibrary.Retriver;
+using School_Main.Methods;
 
 var personPersister = new PersonPersister();
 var teacherPersister = new TeacherPersister();
 var studentPersister = new StudentPersister();
 
-var person = new Person
-{
-    Address = "Largo Colombo",
-    BirthDay = new DateTime(1975, 6, 30),
-    Gender = "Male",
-    Name = "Nicola",
-    Surname = "Di Bari"
-};
+var input = "h";
 
-var person2 = new Person
+while (input != "exit")
 {
-    Address = "Vicolo corto",
-    BirthDay = new DateTime(1990, 4, 30),
-    Gender = "Female",
-    Name = "Sara",
-    Surname = "Rossi"
-};
+    switch (input)
+    {
+        case "help":
+        case "h":
+            Console.WriteLine(" h, help              -- per vedere i comandi");
+            Console.WriteLine(" exit                 -- per uscire");
+            Console.WriteLine(" add person           -- per aggiungere una persona");
+            Console.WriteLine(" print all persons    -- per vedere le persone tutte le persone registrate");
+            Console.WriteLine(" update person        -- per aggiungere una persona");
+            Console.WriteLine(" add teacher          -- per aggiungere un docente");
+            break;
+        case "add person":
+            Console.WriteLine("loading...");
+
+            Console.WriteLine(PersonHandler.AddPerson() != 0 ? "Persona aggiunta con successo" : "ATTENZIONE: qualcosa è andato storto" );
+            if ()
+            {
+                Console.WriteLine("Persona aggiunta con successo");
+            };
+            break;
+        case "print all persons":
+        case "print all person":
+            Console.WriteLine("**************** All PERSON ****************");
+            foreach (var p in PersonHandler.ReadAllPerson().ToList<Person>())
+                Console.WriteLine(p);
+
+            break;
+        case "update person":
+            Console.WriteLine(PersonHandler.UpdatePerson() == true ? "Persona aggioranta correttamente" : "ATTENZIONE: persona non aggiornata");
+            break;
+        case "add teacher":
+            break;
+        default:
+            break;
+
+    }
+    Console.WriteLine();
+    Console.Write("h per helper, exit per uscire: ");
+    input = Console.ReadLine().ToLower();
+
+}
+
+
+
+
+//var person = new Person
+//{
+//    Address = "Largo Colombo",
+//    BirthDay = new DateTime(1975, 6, 30),
+//    Gender = "Male",
+//    Name = "Nicola",
+//    Surname = "Di Bari"
+//};
+
+//var person2 = new Person
+//{
+//    Address = "Vicolo corto",
+//    BirthDay = new DateTime(1990, 4, 30),
+//    Gender = "Female",
+//    Name = "Sara",
+//    Surname = "Rossi"
+//};
 
 
 //person.Id = personPersister.AddPerson(person);
@@ -32,10 +82,9 @@ var person2 = new Person
 //TeacherAdder(teacherPersister, person);
 //StudentAdder(studentPersister, person2);
 
-printTeacher();
-printStudent();
+//printTeacher();
+//printStudent();
 
-Console.ReadLine();
 
 
 //--------------------------------------------------------------------------

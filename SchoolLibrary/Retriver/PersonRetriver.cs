@@ -41,5 +41,32 @@ namespace SchoolLibrary.Retriver
             }
 
         }
+
+        public IEnumerable<Person> GetAllPerson()
+        {
+
+            var sql = @"
+                    SELECT *
+                    FROM Person";
+
+
+            using var connection = new SQLConnectionFactory().GetSQLConnection();
+            connection.Open();
+            using var command = new SqlCommand(sql, connection);
+            var reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                yield return new Person
+                {
+                    Id = Convert.ToInt32(reader["Id"]),
+                    Name = reader["Name"].ToString(),
+                    Surname = reader["Surname"].ToString(),
+                    Gender = reader["Gender"].ToString(),
+                    BirthDay = Convert.ToDateTime(reader["Birthday"]),
+                    Address = reader["Address"].ToString(),
+                };
+            }
+
+        }
     }
 }

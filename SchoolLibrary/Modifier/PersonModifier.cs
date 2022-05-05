@@ -21,11 +21,11 @@ namespace SchoolLibrary.Modifier
         public bool UpdatePerson(Person person)
         {
             var sql = @"UPDATE [dbo].[Person]
-                       SET [Name] = @Name
+                        SET [Name] = @Name
                           ,[Surname] = @Surname
                           ,[BirthDay] = @BirthDay
                           ,[Gender] = @Gender
-                     WHERE Id=@Id";
+                        WHERE Id=@Id";
 
             using var connection = new SqlConnection(EnvConstants.CONNECTION_STRING);
             connection.Open();
