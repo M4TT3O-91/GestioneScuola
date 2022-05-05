@@ -1,6 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
 using SchoolLibrary.Model;
-using SchoolLibrary.Costants;
 using SchoolLibrary.Interface;
 
 namespace SchoolLibrary.Persister
@@ -25,7 +24,7 @@ namespace SchoolLibrary.Persister
             command.Parameters.AddWithValue("@IdPerson", teacher.Id);
             command.Parameters.AddWithValue("@Matricola", teacher.Matricola);
             command.Parameters.AddWithValue("@DataAssunzione", teacher.DataAssunzione);
-         
+
             return Convert.ToInt32(command.ExecuteScalar());
         }
     }

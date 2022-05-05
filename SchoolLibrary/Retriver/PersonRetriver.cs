@@ -1,5 +1,4 @@
 ﻿using Microsoft.Data.SqlClient;
-using SchoolLibrary.Costants;
 using SchoolLibrary.Interface;
 using SchoolLibrary.Model;
 
@@ -7,7 +6,7 @@ namespace SchoolLibrary.Retriver
 {
     public class PersonRetriver
     {
-        public IEnumerable<Person> GetPersonById(string name,string surname)
+        public IEnumerable<Person> GetPersonByName(string name,string surname)
         {
 
             var sql = @"

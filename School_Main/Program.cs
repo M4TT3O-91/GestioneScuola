@@ -25,67 +25,77 @@ var person2 = new Person
     Surname = "Rossi"
 };
 
-
 person.Id = personPersister.AddPerson(person);
-person2.Id = personPersister.AddPerson(person2);
+//person2.Id = personPersister.AddPerson(person2);
 
-var teacher = new Teacher
+TeacherAdder(teacherPersister, person);
+//StudentAdder(studentPersister, person2);
+
+Console.WriteLine();
+
+
+//------------------------------------------------------------------------
+static void TeacherAdder(TeacherPersister teacherPersister, Person person)
 {
-    Address = "Largo Colombo",
-    BirthDay = new DateTime(1975, 6, 30),
-    DataAssunzione = new DateTime(2001,01,05),
-    Gender="Male",
-    Id =person.Id,
-    Name ="Nicola",
-    Surname ="Di Bari",
-    Matricola="ABDFDSF"
-};
+    var teacher = new Teacher
+    {
+        Address = "Largo Colombo",
+        BirthDay = new DateTime(1975, 6, 30),
+        DataAssunzione = new DateTime(2001, 01, 05),
+        Gender = "Male",
+        Id = person.Id,
+        Name = "Nicola",
+        Surname = "Di Bari",
+        Matricola = "ABDFDSF"
+    };
 
-var idteacher = teacherPersister.AddTeacher(teacher);
+    var idteacher = teacherPersister.AddTeacher(teacher);
 
- teacher = new Teacher
+    teacher = new Teacher
+    {
+        Address = "Largo Colombo",
+        BirthDay = new DateTime(1974, 6, 30),
+        DataAssunzione = new DateTime(2001, 01, 05),
+        Gender = "Male",
+        Id = person.Id,
+        Name = "Nicola",
+        Surname = "Bari",
+        Matricola = "ABDFDSF",
+        IdTeacher = 1
+    };
+
+    var modifierTeacher = new TeacherModifier();
+    modifierTeacher.UpdateTeacher(teacher);
+}
+
+static void StudentAdder(StudentPersister studentPersister, Person person2)
 {
-    Address = "Largo Colombo",
-    BirthDay = new DateTime(1974, 6, 30),
-    DataAssunzione = new DateTime(2001, 01, 05),
-    Gender = "Male",
-    Id = person.Id,
-    Name = "Nicola",
-    Surname = "Bari",
-    Matricola = "ABDFDSF",
-    IdTeacher = idteacher
-};
+    var student = new Student
+    {
+        Address = "Vicolo corto",
+        BirthDay = new DateTime(1990, 4, 30),
+        Gender = "Female",
+        Name = "Sara",
+        Surname = "Rossi",
+        Id = person2.Id,
+        DataIscrizione = new DateTime(2008, 5, 5),
+        Matricola = "ABCDEF",
+    };
 
-var modifierTeacher = new TeacherModifier();
-modifierTeacher.UpdateTeacher(teacher);
+    var idStudent = studentPersister.AddStudent(student);
+    student = new Student
+    {
+        Address = "Vicolo corto",
+        BirthDay = new DateTime(1990, 4, 30),
+        Gender = "Female",
+        Name = "Sara",
+        Surname = "Rossi",
+        Id = person2.Id,
+        DataIscrizione = new DateTime(2008, 5, 5),
+        Matricola = "ABCDEF",
+        IdStudent = idStudent
+    };
 
-var student = new Student
-{
-    Address = "Vicolo corto",
-    BirthDay = new DateTime(1990, 4, 30),
-    Gender = "Female",
-    Name = "Sara",
-    Surname = "Rossi",
-    Id = person2.Id,
-    DataIscrizione = new DateTime(2008, 5, 5),
-    Matricola = "ABCDEF",
-};
-
-var idStudent = studentPersister.AddStudent(student);
-student = new Student
-{
-    Address = "Vicolo corto",
-    BirthDay = new DateTime(1990, 4, 30),
-    Gender = "Female",
-    Name = "Sara",
-    Surname = "Rossi",
-    Id = person2.Id,
-    DataIscrizione = new DateTime(2008, 5, 5),
-    Matricola = "ABCDEF",
-    IdStudent = idStudent
-};
-
-var studentModifier = new StudentModifier();
-studentModifier.UpdateStudent(student);
-
-Console.ReadLine();
+    var studentModifier = new StudentModifier();
+    studentModifier.UpdateStudent(student);
+}
