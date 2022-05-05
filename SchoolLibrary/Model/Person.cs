@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-namespace SchoolLibrary.Model
+﻿namespace SchoolLibrary.Model
 {
     public class Person
     {
@@ -10,5 +8,10 @@ namespace SchoolLibrary.Model
         public DateTime BirthDay { get; set; }
         public string Gender { get; set; }
         public string Address { get; set; }
+
+        public override string? ToString()
+        {
+            return $"ID:{Id} Name:{Name} Surname:{Surname} BirthDay:{BirthDay} Gender:{Gender} Adress:{Address}";
+        }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using SchoolLibrary.Model;
 using SchoolLibrary.Persister;
 using SchoolLibrary.Modifier;
-
+using SchoolLibrary.Retriver;
 
 var personPersister = new PersonPersister();
 var teacherPersister = new TeacherPersister();
@@ -25,16 +25,20 @@ var person2 = new Person
     Surname = "Rossi"
 };
 
+
 person.Id = personPersister.AddPerson(person);
-//person2.Id = personPersister.AddPerson(person2);
+person2.Id = personPersister.AddPerson(person2);
 
 TeacherAdder(teacherPersister, person);
-//StudentAdder(studentPersister, person2);
+StudentAdder(studentPersister, person2);
 
-Console.WriteLine();
+printTeacher();
+printStudent();
+
+Console.ReadLine();
 
 
-//------------------------------------------------------------------------
+//--------------------------------------------------------------------------
 static void TeacherAdder(TeacherPersister teacherPersister, Person person)
 {
     var teacher = new Teacher
@@ -61,7 +65,7 @@ static void TeacherAdder(TeacherPersister teacherPersister, Person person)
         Name = "Nicola",
         Surname = "Bari",
         Matricola = "ABDFDSF",
-        IdTeacher = 1
+        IdTeacher = idteacher
     };
 
     var modifierTeacher = new TeacherModifier();
@@ -98,4 +102,24 @@ static void StudentAdder(StudentPersister studentPersister, Person person2)
 
     var studentModifier = new StudentModifier();
     studentModifier.UpdateStudent(student);
+}
+
+static void printTeacher()
+{
+    var teacherRetriver = new TeacherRetriver();
+    var teacherList = teacherRetriver.GetAllTeachers().ToList<Teacher>();
+    foreach (var t in teacherList)
+    {
+        Console.WriteLine(t);
+    }
+}
+
+static void printStudent()
+{
+    var studentRetriver = new StudentRetriver();
+    var studList = studentRetriver.GetAllStudent().ToList<Student>();
+    foreach (var s in studList)
+    {
+        Console.WriteLine(s);
+    }
 }

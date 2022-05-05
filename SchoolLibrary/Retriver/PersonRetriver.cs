@@ -17,7 +17,7 @@ namespace SchoolLibrary.Retriver
                           ,[Gender]
                           ,[Address]
                       FROM [dbo].[Person]
-                        where Surname =@surname";
+                        where Name = @name AND Surname =@surname";
 
 
             using var connection = new SQLConnectionFactory().GetSQLConnection();

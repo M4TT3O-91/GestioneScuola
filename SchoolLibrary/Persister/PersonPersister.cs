@@ -1,5 +1,4 @@
 ﻿using Microsoft.Data.SqlClient;
-using SchoolLibrary.Costants;
 using SchoolLibrary.Interface;
 using SchoolLibrary.Model;
 
@@ -7,7 +6,6 @@ namespace SchoolLibrary.Persister
 {
     public class PersonPersister
     {
-
         public int AddPerson(Person person)
         {
             var sql = @"
@@ -32,7 +30,6 @@ namespace SchoolLibrary.Persister
             command.Parameters.AddWithValue("@BirthDay", person.BirthDay);
             command.Parameters.AddWithValue("@Gender", person.Gender);
             command.Parameters.AddWithValue("@Address", person.Address);
-
 
             return Convert.ToInt32(command.ExecuteScalar());
         }
