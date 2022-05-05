@@ -16,22 +16,22 @@ while (input != "exit")
     {
         case "help":
         case "h":
-            Console.WriteLine("*******************************************************************************");
-            Console.WriteLine(" h, help              -- per vedere i comandi                                 *");
-            Console.WriteLine(" exit                 -- per uscire                                           *");
-            Console.WriteLine("Persona ***********************************************************************");
-            Console.WriteLine(" add person           -- per aggiungere una persona                           *");
-            Console.WriteLine(" print all persons    -- per vedere le persone tutte le persone registrate    *");
-            Console.WriteLine(" update person        -- per aggiornare una persona                           *");
-            Console.WriteLine("Studente **********************************************************************");
-            Console.WriteLine(" add student          -- per aggiungere una persona                           *");
-            Console.WriteLine(" print all students   -- per vedere tutti gli studenti registrati             *");
-            Console.WriteLine(" update student       -- per aggiornare una persona                           *");
-            Console.WriteLine("Teacher ***********************************************************************");
-            Console.WriteLine(" add teacher          -- per aggiungere un docente                            *");
-            Console.WriteLine(" print all teachers   -- per vedere tutti i docenti registrati                *");
-            Console.WriteLine(" update teacher       -- per aggiornare una docente                           *");
-            Console.WriteLine("*******************************************************************************");
+            Console.WriteLine("*-------------------------------------------------------------------------------*");
+            Console.WriteLine("|  h, help              -- per vedere i comandi                                 |");
+            Console.WriteLine("|  exit                 -- per uscire                                           |");
+            Console.WriteLine("|-- Persona --------------------------------------------------------------------|");
+            Console.WriteLine("|  add person           -- per aggiungere una persona                           |");
+            Console.WriteLine("|  print all persons    -- per vedere le persone tutte le persone registrate    |");
+            Console.WriteLine("|  update person        -- per aggiornare una persona                           |");
+            Console.WriteLine("|-- Studente -------------------------------------------------------------------|");
+            Console.WriteLine("|  add student          -- per aggiungere una persona                           |");
+            Console.WriteLine("|  print all students   -- per vedere tutti gli studenti registrati             |");
+            Console.WriteLine("|  update student       -- per aggiornare una persona                           |");
+            Console.WriteLine("|-- Teacher --------------------------------------------------------------------|");
+            Console.WriteLine("|  add teacher          -- per aggiungere un docente                            |");
+            Console.WriteLine("|  print all teachers   -- per vedere tutti i docenti registrati                |");
+            Console.WriteLine("|  update teacher       -- per aggiornare una docente                           |");
+            Console.WriteLine("*-------------------------------------------------------------------------------*");
             break;
         case "add person":
             Console.WriteLine("loading...");

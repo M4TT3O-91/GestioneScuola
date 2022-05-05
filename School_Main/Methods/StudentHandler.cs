@@ -21,17 +21,30 @@ namespace School_Main.Methods
             Console.Write("Genere: ");
             var gender = Console.ReadLine();
 
-            Console.WriteLine("Indirizzo: ");
+            Console.Write("Indirizzo: ");
             var address = Console.ReadLine();
 
-            Console.WriteLine("Matricola: ");
+            Console.Write("Matricola: ");
             var matricola = Console.ReadLine();
 
-            Console.WriteLine("Data Iscrizione (aaaa-mm-gg): ");
+            Console.Write("Data Iscrizione (aaaa-mm-gg): ");
             var iscr = DateTime.Parse(Console.ReadLine());
+
+            var person = new Person
+            {
+                Name = name,
+                Surname = surname,
+                BirthDay = birthDay,
+                Gender = gender,
+                Address = address,
+            };
+
+            var personPersister = new PersonPersister();
+            person.Id = personPersister.AddPerson(person);
 
             var student = new Student
             {
+                Id = person.Id,
                 Name = name,
                 Surname = surname,
                 BirthDay = birthDay,
@@ -75,10 +88,10 @@ namespace School_Main.Methods
             Console.Write("ID Studente: ");
             int.TryParse(Console.ReadLine(), out int idStud);
 
-            Console.WriteLine("Matricola: ");
+            Console.Write("Matricola: ");
             var matricola = Console.ReadLine();
 
-            Console.WriteLine("Data Iscrizione (aaaa-mm-gg): ");
+            Console.Write("Data Iscrizione (aaaa-mm-gg): ");
             var iscr = DateTime.Parse(Console.ReadLine());
 
             var student = new Student

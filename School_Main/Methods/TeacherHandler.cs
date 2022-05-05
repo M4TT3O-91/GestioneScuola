@@ -26,17 +26,30 @@ namespace School_Main.Methods
             Console.Write("Genere: ");
             var gender = Console.ReadLine();
 
-            Console.WriteLine("Indirizzo: ");
+            Console.Write("Indirizzo: ");
             var address = Console.ReadLine();
 
-            Console.WriteLine("Matricola: ");
+            Console.Write("Matricola: ");
             var matricola = Console.ReadLine();
 
-            Console.WriteLine("Data Assunzione (aaaa-mm-gg): ");
+            Console.Write("Data Assunzione (aaaa-mm-gg): ");
             var assunz = DateTime.Parse(Console.ReadLine());
+
+            var person = new Person
+            {
+                Name = name,
+                Surname = surname,
+                BirthDay = birthDay,
+                Gender = gender,
+                Address = address,
+            };
+
+            var personPersister = new PersonPersister();
+            person.Id = personPersister.AddPerson(person);
 
             var teacher = new Teacher
             {
+                Id = person.Id,
                 Name = name,
                 Surname = surname,
                 BirthDay = birthDay,
