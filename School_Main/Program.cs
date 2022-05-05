@@ -1,11 +1,11 @@
 ﻿using SchoolLibrary.Model;
 using SchoolLibrary.Persister;
 using SchoolLibrary.Modifier;
-// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
 
-var persisterPerson = new PersonPersister();
-var persisterTeacher = new TeacherPersister();
+
+var personPersister = new PersonPersister();
+var teacherPersister = new TeacherPersister();
+var studentPersister = new StudentPersister();
 
 var person = new Person
 {
@@ -16,8 +16,18 @@ var person = new Person
     Surname = "Di Bari"
 };
 
+var person2 = new Person
+{
+    Address = "Vicolo corto",
+    BirthDay = new DateTime(1990, 4, 30),
+    Gender = "Female",
+    Name = "Sara",
+    Surname = "Rossi"
+};
 
-person.Id = persisterPerson.AddPerson(person);
+
+person.Id = personPersister.AddPerson(person);
+person2.Id = personPersister.AddPerson(person2);
 
 var teacher = new Teacher
 {
@@ -31,7 +41,7 @@ var teacher = new Teacher
     Matricola="ABDFDSF"
 };
 
-var idteacher = persisterTeacher.AddTeacher(teacher);
+var idteacher = teacherPersister.AddTeacher(teacher);
 
  teacher = new Teacher
 {
@@ -49,4 +59,33 @@ var idteacher = persisterTeacher.AddTeacher(teacher);
 var modifierTeacher = new TeacherModifier();
 modifierTeacher.UpdateTeacher(teacher);
 
-Console.WriteLine();
+var student = new Student
+{
+    Address = "Vicolo corto",
+    BirthDay = new DateTime(1990, 4, 30),
+    Gender = "Female",
+    Name = "Sara",
+    Surname = "Rossi",
+    Id = person2.Id,
+    DataIscrizione = new DateTime(2008, 5, 5),
+    Matricola = "ABCDEF",
+};
+
+var idStudent = studentPersister.AddStudent(student);
+student = new Student
+{
+    Address = "Vicolo corto",
+    BirthDay = new DateTime(1990, 4, 30),
+    Gender = "Female",
+    Name = "Sara",
+    Surname = "Rossi",
+    Id = person2.Id,
+    DataIscrizione = new DateTime(2008, 5, 5),
+    Matricola = "ABCDEF",
+    IdStudent = idStudent
+};
+
+var studentModifier = new StudentModifier();
+studentModifier.UpdateStudent(student);
+
+Console.ReadLine();

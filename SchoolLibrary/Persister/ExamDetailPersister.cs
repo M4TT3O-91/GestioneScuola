@@ -7,7 +7,7 @@ namespace SchoolLibrary.Persister
 {
     public class ExamDetailPersister
     {
-        public bool AddExamDetail(ExamDetail examDetail)
+        public int AddExamDetail(ExamDetail examDetail)
         {
             var sql = @"
                         INSERT INTO [dbo].[Teacher]
@@ -15,15 +15,15 @@ namespace SchoolLibrary.Persister
                                    ,[IdStudent])
                              VALUES
                                    (@IdExam
-                                   ,@IdStudent)";
+                                   ,@IdStudent);SELECT @@IDENTITY AS 'Identity';";
 
             using var connection = new SQLConnectionFactory().GetSQLConnection();
             connection.Open();
             using var command = new SqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@IdPerson", examDetail.IdExam);
-            command.Parameters.AddWithValue("@Matricola", examDetail.IdStudent);
+            command.Parameters.AddWithValue("@IdExam", examDetail.IdExam);
+            command.Parameters.AddWithValue("@IdStudent", examDetail.IdStudent);
 
-            return command.ExecuteNonQuery() > 0;
+            return Convert.ToInt32(command.ExecuteScalar());
         }
     }
 }

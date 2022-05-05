@@ -23,7 +23,7 @@ namespace SchoolLibrary.Persister
             connection.Open();
             using var command = new SqlCommand(sql, connection);
             command.Parameters.AddWithValue("@IdTeacher", lesson.IdTeacher);
-            command.Parameters.AddWithValue("@Matricola", lesson.IdSubject);
+            command.Parameters.AddWithValue("@IdSubject", lesson.IdSubject);
 
             return Convert.ToInt32(command.ExecuteScalar());
         }

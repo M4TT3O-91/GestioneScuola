@@ -22,7 +22,7 @@ namespace SchoolLibrary.Modifier
                        SET [IdPerson] = @IdPerson,
                            [Matricola] = @Matricola,
                            [DataIscrizione] = @DataIscrizione
-                     WHERE IdStudent=@Id";
+                     WHERE IdStudente=@Id";
 
             using var connection = new SQLConnectionFactory().GetSQLConnection();
             connection.Open();

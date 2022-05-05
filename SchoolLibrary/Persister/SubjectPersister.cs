@@ -24,12 +24,12 @@ namespace SchoolLibrary.Persister
             using var connection = new SQLConnectionFactory().GetSQLConnection();
             connection.Open();
             using var command = new SqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@IdPerson", subject.Name);
+            command.Parameters.AddWithValue("@Name", subject.Name);
             command.Parameters.AddWithValue("@Description", subject.Description);
             command.Parameters.AddWithValue("@Credits", subject.Credits);
             command.Parameters.AddWithValue("@Hours", subject.Hours);
 
-            return Convert.ToInt32(command.ExecuteNonQuery());
+            return Convert.ToInt32(command.ExecuteScalar());
         }
     }
 }

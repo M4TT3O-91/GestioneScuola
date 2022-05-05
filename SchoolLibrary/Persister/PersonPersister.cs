@@ -22,7 +22,7 @@ namespace SchoolLibrary.Persister
                                     @Surname,
                                     @BirthDay,
                                     @Gender,
-                                    @Address);SELECT @@IDENTITY AS 'Identity'; ";
+                                    @Address);SELECT @@IDENTITY AS 'Identity';";
 
             using var connection = new SQLConnectionFactory().GetSQLConnection();
             connection.Open();
