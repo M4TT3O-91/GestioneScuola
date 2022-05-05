@@ -56,8 +56,8 @@ namespace SchoolLibrary.Retriver
             {
                 yield return new Teacher
                 {
-                    Id = Convert.ToInt32(reader["IdPerson"]),
-                    IdTeacher = Convert.ToInt32(reader["Id"]),
+                    Id = Convert.ToInt32(reader["Id"]),
+                    IdTeacher = Convert.ToInt32(reader["IdTeacher"]),
                     Matricola = reader["Matricola"].ToString(),
                     DataAssunzione = Convert.ToDateTime(reader["Birthday"]),
 
