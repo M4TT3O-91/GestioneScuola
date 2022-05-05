@@ -11,7 +11,7 @@
 
         public override string? ToString()
         {
-            return $"ID:{Id} Name:{Name} Surname:{Surname} BirthDay:{BirthDay} Gender:{Gender} Adress:{Address}";
+            return $"ID:{Id:D3} Name:{Name} Surname:{Surname} BirthDay:{BirthDay:d} Gender:{Gender} Adress:{Address}";
         }
     }
 }

@@ -8,7 +8,7 @@
 
         public override string? ToString()
         {
-            return string.Concat(base.ToString(), $" - IdTeacher:{IdTeacher} Matricola:{Matricola} DataAssunzione:{DataAssunzione}");
+            return string.Concat(base.ToString(), $" - IdTeacher:{IdTeacher:D3} Matricola:{Matricola} DataAssunzione:{DataAssunzione:d}");
         }
     } 
 }

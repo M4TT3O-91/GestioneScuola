@@ -26,11 +26,11 @@ var person2 = new Person
 };
 
 
-person.Id = personPersister.AddPerson(person);
-person2.Id = personPersister.AddPerson(person2);
+//person.Id = personPersister.AddPerson(person);
+//person2.Id = personPersister.AddPerson(person2);
 
-TeacherAdder(teacherPersister, person);
-StudentAdder(studentPersister, person2);
+//TeacherAdder(teacherPersister, person);
+//StudentAdder(studentPersister, person2);
 
 printTeacher();
 printStudent();
@@ -106,20 +106,24 @@ static void StudentAdder(StudentPersister studentPersister, Person person2)
 
 static void printTeacher()
 {
+    Console.WriteLine("TEACHER:");
     var teacherRetriver = new TeacherRetriver();
     var teacherList = teacherRetriver.GetAllTeachers().ToList<Teacher>();
     foreach (var t in teacherList)
     {
         Console.WriteLine(t);
     }
+    Console.WriteLine();
 }
 
 static void printStudent()
 {
+    Console.WriteLine("STUDENT:");
     var studentRetriver = new StudentRetriver();
     var studList = studentRetriver.GetAllStudent().ToList<Student>();
     foreach (var s in studList)
     {
         Console.WriteLine(s);
     }
+    Console.WriteLine();
 }
