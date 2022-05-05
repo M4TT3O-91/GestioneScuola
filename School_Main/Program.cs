@@ -1,7 +1,4 @@
 ﻿using SchoolLibrary.Model;
-using SchoolLibrary.Persister;
-using SchoolLibrary.Modifier;
-using SchoolLibrary.Retriver;
 using School_Main.Methods;
 
 var input = "h";
@@ -29,9 +26,10 @@ while (input != "exit")
             Console.WriteLine("|  update teacher       -- per aggiornare una docente                           |");
             Console.WriteLine("*-------------------------------------------------------------------------------*");
             break;
+
         case "add person":
             Console.WriteLine("loading...");
-            Console.WriteLine(PersonHandler.AddPerson() != 0 ? "Persona aggiunta con successo" : "ATTENZIONE: qualcosa è andato storto" );
+            Console.WriteLine(PersonHandler.AddPerson() != 0 ? "Persona aggiunta con successo" : "ATTENZIONE: qualcosa è andato storto");
             break;
         case "print all persons":
             Console.WriteLine("**************** All PERSON ****************");
