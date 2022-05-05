@@ -24,6 +24,8 @@ while (input != "exit")
             Console.WriteLine("|  add teacher          -- per aggiungere un docente                            |");
             Console.WriteLine("|  print all teachers   -- per vedere tutti i docenti registrati                |");
             Console.WriteLine("|  update teacher       -- per aggiornare una docente                           |");
+            Console.WriteLine("|-- Altro-----------------------------------------------------------------------|");
+            Console.WriteLine("|  clr, clear           -- per pulire la console                                |");
             Console.WriteLine("*-------------------------------------------------------------------------------*");
             break;
 
@@ -66,6 +68,11 @@ while (input != "exit")
             break;
         case "update teacher":
             Console.WriteLine(TeacherHandler.UpdateTeacher() == true ? "Docente aggioranto correttamente" : "ATTENZIONE: Docente non aggiornato");
+            break;
+
+        case "clr":
+        case "clear":
+            Console.Clear();
             break;
 
 
